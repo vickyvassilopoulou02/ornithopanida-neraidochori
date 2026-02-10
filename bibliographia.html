@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Πτυχιακή Εργασία - Βασιλοπούλου Βαΐα</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+
+<!-- CSS -->
+    <style>
+/* ================= ROOT ================= */
+
+:root {
+    --bg-overlay: rgba(220, 189, 139, 0.858);
+    --primary-green: #41644A;
+    --dark-green: #2c4136;
+    --accent-orange: #E9762B;
+    --soft-shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
+
+/* ================= BASE ================= */
+
+body {
+    font-family: 'Aptos', sans-serif;
+    margin: 0;
+    background-color: #fffbef;
+    color: #3e3e3e;
+    scroll-behavior: smooth;
+}
+
+section {
+    margin: 40px auto;
+    padding: 40px;
+    max-width: 1000px;
+    background: #e2e5cd;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.555);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-green);
+    margin-bottom: 40px;
+}
+
+/* ================= HERO ================= */
+
+#home {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(248, 246, 242);
+    border-radius: 50px 50px 50px 50px;
+    overflow: hidden;
+    text-shadow: 3px 3px 9px rgba(0, 0, 0, 0.7);
+     opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Background slides */
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeLoop 80s infinite;
+}
+
+.bg-slide.slide1 { background-image: url('images/1.JPG'); animation-delay: 0s; }
+.bg-slide.slide2 { background-image: url('images/2.JPG'); animation-delay: 6s; }
+.bg-slide.slide3 { background-image: url('images/3.JPG'); animation-delay: 12s; }
+.bg-slide.slide4 { background-image: url('images/4.JPG'); animation-delay: 18s; }
+.bg-slide.slide5 { background-image: url('images/5.JPG'); animation-delay: 24s; }
+.bg-slide.slide6 { background-image: url('images/6.JPG'); animation-delay: 30s; }
+.bg-slide.slide7 { background-image: url('images/7.JPG'); animation-delay: 36s; }
+.bg-slide.slide8 { background-image: url('images/8.JPG'); animation-delay: 42s; }
+.bg-slide.slide9 { background-image: url('images/9.JPG'); animation-delay: 48s; }
+.bg-slide.slide10 { background-image: url('images/10.JPG'); animation-delay: 56s; }
+.bg-slide.slide11 { background-image: url('images/11.JPG'); animation-delay: 64s; }
+.bg-slide.slide12 { background-image: url('images/12.JPG'); animation-delay: 72s; }
+.bg-slide.slide13 { background-image: url('images/13.JPG'); animation-delay: 80s; }
+
+/* Smooth fade animation */
+@keyframes fadeLoop {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    25%  { opacity: 1; }
+    33%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Περιεχόμενο πάνω από το background */
+.home-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn-container { margin-top: 30px; }
+
+.btn {
+    padding: 10px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-guide {
+    background: #556b2f;
+    color: white;
+}
+
+/* ================= BACK TO TOP ================= */
+
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.back-to-top img {
+    width: 80px;
+    transition: 0.3s;
+}
+
+.back-to-top:hover img {
+    transform: translateY(-6px);
+    opacity: 0.85;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #74b992;
+    color: #e7ddd0;
+    padding: 30px;
+    text-align: center;
+    border-radius: 50px 50px 0 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+    .study-flex {
+        flex-direction: column;
+    }
+
+    .map-frame {
+        height: 350px;
+    }
+}
+/* ================= BIBLIOGRAPHY ================= */
+
+#bibliography {
+    background: #e9ecd6;
+}
+
+.bibliography-container {
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.bibliography-list {
+    padding-left: 20px;
+}
+
+.bibliography-list li {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.bibliography-list em {
+    color: #2c4136;
+    font-style: italic;
+}
+
+.bibliography-list a {
+    display: block;
+    margin-top: 4px;
+    color: #41644A;
+    word-break: break-word;
+    font-size: 0.9rem;
+}
+
+.bibliography-list a:hover {
+    text-decoration: underline;
+}
+#bibliography {
+    opacity: 1;
+    transform: none;
+}
+/* ================= FOOTER ================= */
+
+footer {
+    background: #74b992;
+    color: #e7ddd0;
+    padding: 30px;
+    text-align: center;
+    border-radius: 50px 50px 0 0;
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- Κουμπί αρχικής-->
+<a href="#top" class="back-to-top" aria-label="Επιστροφή στην αρχή">
+   <img src="images/top-button.png" alt="Επιστροφή στην αρχή">
+</a>
+<div id="top"></div>
+
+<!-- Εισαγωγή -->
+<section id="home">
+    <div class="bg-slide slide1"></div>
+    <div class="bg-slide slide2"></div>
+    <div class="bg-slide slide3"></div>
+    <div class="bg-slide slide4"></div>
+    <div class="bg-slide slide5"></div>
+    <div class="bg-slide slide6"></div>
+    <div class="bg-slide slide7"></div>
+    <div class="bg-slide slide8"></div>
+    <div class="bg-slide slide9"></div>
+    <div class="bg-slide slide10"></div>
+    <div class="bg-slide slide11"></div>
+    <div class="bg-slide slide12"></div>
+    <div class="bg-slide slide13"></div>
+    
+    <div class="home-content">
+        <h1>Η ορνιθοπανίδα του δάσους Νεραϊδοχωρίου της ΠΕ Τρικάλων</h1>
+        <h3>ως πηγή έμπνευσης για την δημιουργία πρότυπου εκπαιδευτικού υλικού για την ευαισθητοποίηση των μαθητών</h3>
+        <div class="btn-container">
+  <a href="index.html" class="btn btn-guide">Αρχική Σελίδα</a>
+</div>
+    </div>
+</section>
+
+<section id="bibliography" class="visible">
+  <div class="bibliography-container">
+
+    <h2>Βιβλιογραφία</h2>
+<ol class="bibliography-list">
+
+  <li>Alenuis, F., Revstedt, J. & Johansson, C. (2024).
+    <em>Feather aerodynamics suggest importance of lift and flow predictability over drag minimization.</em>
+    <a href="https://www.biorxiv.org/content/10.1101/2024.05.27.596009v1.full" target="_blank">biorxiv.org</a>
+  </li>
+
+  <li>Alonso, B. R. (2024).
+    <em>EU Task Force on the Recovery of Birds.</em>
+    <a href="https://circabc.europa.eu/ui/group/e21159fc-a026-4045-a47f9ff1a319e1c5/library/713b5b36-ad86-4980-ab07-f90b545e8106/details" target="_blank">circabc.europa.eu</a>
+  </li>
+
+  <li>Angell, B. (2017).
+    <em>How to Go From Watching Birds to Drawing Them.</em>
+    <a href="https://www.audubon.org/magazine/how-go-watching-birds-drawingthem" target="_blank">audubon.org</a>
+  </li>
+
+  <li>Aspropotamos.org. (2018).
+    <em>Φύση.</em>
+    <a href="https://aspropotamos.org/" target="_blank">aspropotamos.org</a>
+  </li>
+
+  <li>Ballantyne, K. C. (2025).
+    <em>Start drawing to enrich your birding, and your life.</em>
+    <a href="https://kellycballantyne.substack.com/p/start-drawing-to-enrich-your-birding" target="_blank">substack.com</a>
+  </li>
+
+  <li>Birkhead, T. (2022).
+    <em>How Bird Collecting Evolved Into Bird-Watching.</em> Smithsonian Magazine.
+    <a href="https://www.smithsonianmag.com/history/how-bird-collecting-evolvedinto-bird-watching-180980506/" target="_blank">smithsonianmag.com</a>
+  </li>
+
+  <li>Bogner, F. X. & Wilhelm, M. G. (1996).
+    <em>Environmental Perspectives of Pupils.</em> The Environmentalist.
+    <a href="https://link.springer.com/article/10.1007/BF01325101" target="_blank">springer.com</a>
+  </li>
+
+  <li>Boote, B. (2003).
+    <em>The prime mover of the Nature Conservancy and the World Wildlife Fund.</em>
+    <a href="https://www.theguardian.com/news/2003/apr/28/guardianobituaries.highereducation" target="_blank">theguardian.com</a>
+  </li>
+
+  <li>Brelsford, C. (2013).
+    <em>Birding Greats – Jon Hornbuckle.</em>
+    <a href="https://fatbirder.com/articles/birding-greats-jon-hornbuckle/" target="_blank">fatbirder.com</a>
+  </li>
+
+  <li>Chen, Y. et al. (2023).
+    <em>Vultures as a model for testing molecular adaptations of dietary specialization in birds.</em>
+    <a href="https://www.sciencedirect.com/science/article/pii/S2053716623000543" target="_blank">sciencedirect.com</a>
+  </li>
+
+  <li>Finnbogadóttir, G. Ýr. (2022).
+    <em>Arts education with nature.</em>
+    <a href="https://pimdi.lhi.is/arts-education-with-nature/" target="_blank">pimdi.lhi.is</a>
+  </li>
+
+  <li>Fisher, J. (1953).
+    <em>Watching Birds.</em> Collins.
+    <a href="https://archive.org/details/watchingbirds0000unse/page/n6/mode/1up" target="_blank">archive.org</a>
+  </li>
+
+  <li>Friedmann, H. (1999).
+    <em>Cuculiform | Bird Order & Adaptations.</em>
+    <a href="https://www.britannica.com/animal/cuculiform" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Gessner, C. (1551).
+    <em>Historia Animalium.</em>
+    <a href="https://archive.org/details/gri_33125010867691" target="_blank">archive.org</a>
+  </li>
+
+  <li>James, L. (2023).
+    <em>Archibald Thorburn: Celebrating the Artistic Legacy of a Master Wildlife Illustrator.</em>
+    <a href="https://gallerythane.com/blogs/news/archibald-thorburn-celebrating-the-artistic-legacy-of-a-master-wildlifeillustrator" target="_blank">gallerythane.com</a>
+  </li>
+
+  <li>Jordan, C. & Children & Nature Network. (2021).
+    <em>Nature and Art.</em>
+    <a href="https://www.childrenandnature.org/resources/research-digest-nature-and-art/" target="_blank">childrenandnature.org</a>
+  </li>
+
+  <li>Cornell Lab of Ornithology. (2024).
+    <em>Teaching Bird ID.</em>
+    <a href="https://www.birds.cornell.edu/k12/teaching-bird-id/" target="_blank">birds.cornell.edu</a>
+  </li>
+
+  <li>Krug, A. (2022).
+    <em>Our Favorite Bird Artists.</em>
+    <a href="https://chirpforbirds.com/avian-inspiration/our-favorite-bird-artists/" target="_blank">chirpforbirds.com</a>
+  </li>
+
+  <li>Lees, A. C. et al. (2022).
+    <em>Global bird populations steadily decline.</em>
+    <a href="https://news.cornell.edu/stories/2022/05/global-bird-populations-steadily-decline" target="_blank">cornell.edu</a>
+  </li>
+
+  <li>Marroquin, A. (2018).
+    <em>The Life and Work of Louis Agassiz Fuertes.</em>
+    <a href="https://blog.biodiversitylibrary.org/2014/10/hispanic-heritage-month-life-and-work.html" target="_blank">biodiversitylibrary.org</a>
+  </li>
+
+  <li>McGowan, S. (2025).
+    <em>5 Benefits of Using Nature to Create Art.</em>
+    <a href="https://www.natureplaywa.org.au/nature-and-the-arts-a-wonderful-combination/" target="_blank">natureplaywa.org.au</a>
+  </li>
+
+  <li>Melhuish, F. (2020).
+    <em>A cabinet of curiosities: Ole Worm’s Museum Wormianum (1655).</em>
+    <a href="https://collections.reading.ac.uk/specialcollections/2020/05/12/a-cabinet-of-curiosities-ole-worms-museum-wormianum-1655/" target="_blank">reading.ac.uk</a>
+  </li>
+
+  <li>Ogilvie, M., Ferguson-Lees, J. & Chandler, R. (2007).
+    <em>A History of British Birds.</em>
+    <a href="https://www.researchgate.net/publication/298118066_A_history_of_british_birds" target="_blank">researchgate.net</a>
+  </li>
+
+  <li>Pettitt, G. A. (1998).
+    <em>Conrad Gesner | Biography & Facts.</em>
+    <a href="https://www.britannica.com/biography/Conrad-Gesner" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Popova, M. (2020).
+    <em>250-year-old Natural History Illustrations.</em>
+    <a href="https://www.themarginalian.org/2020/11/18/george-edwards-gleanings-natural-history/" target="_blank">themarginalian.org</a>
+  </li>
+
+  <li>Rafferty, J. P. et al. (2010).
+    <em>Biodiversity | Definition & Facts.</em>
+    <a href="https://www.britannica.com/science/biodiversity" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Ralph, J., Droege, S. & Sauer, J. (1995).
+    <em>Managing and Monitoring Birds Using Point Counts.</em>
+    <a href="https://www.fs.usda.gov/psw/publications/documents/wild/gtr149/pg161_168.pdf" target="_blank">fs.usda.gov</a>
+  </li>
+
+  <li>Rand, A. L. (1999).
+    <em>Coraciiform | Definition & Characteristics.</em>
+    <a href="https://www.britannica.com/animal/coraciiform" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Schumm, Y. R. et al. (2023).
+    <em>Diet composition of wild columbiform birds.</em>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/37480393/" target="_blank">pubmed.ncbi.nlm.nih.gov</a>
+  </li>
+
+  <li>Sekercioglu, C. H. & Stratford, J. (2015).
+    <em>Birds in Forest Ecosystems.</em> Routledge.
+  </li>
+
+  <li>Selous, E. (1901).
+    <em>Bird Watching.</em>
+    <a href="https://archive.org/details/birdwatching00seloiala" target="_blank">archive.org</a>
+  </li>
+
+  <li>Serratore, A. (2018).
+    <em>Keeping Feathers off Hats—and on Birds.</em>
+    <a href="https://www.smithsonianmag.com/history/migratory-bird-act-anniversary-keeping-feathers-off-hats-180969077/" target="_blank">smithsonianmag.com</a>
+  </li>
+
+  <li>Short, L. L. (1999).
+    <em>Piciform | Characteristics & Habitat.</em>
+    <a href="https://www.britannica.com/animal/piciform" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Singh, S. et al. (2009).
+    <em>John James Audubon.</em>
+    <a href="https://www.britannica.com/biography/John-James-Audubon" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Stephens, J. L. et al. (2010).
+    <em>Klamath Bird Observatory’s Landbird Monitoring Protocol.</em>
+    <a href="https://avianknowledgenorthwest.net/wp-content/uploads/2019/01/SOP-Point-Count.pdf" target="_blank">avianknowledgenorthwest.net</a>
+  </li>
+
+  <li>Tully Jr., T. N. et al. (2009).
+    <em>Passerines.</em>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7158283/" target="_blank">ncbi.nlm.nih.gov</a>
+  </li>
+
+  <li>Walker, S. (2020).
+    <em>Bird watching for beginners.</em>
+    <a href="https://www.wwt.org.uk/discover-wetlands/blog/birdwatching-for-beginners-advice-for-a-first-time-birder" target="_blank">wwt.org.uk</a>
+  </li>
+
+  <li>Wang, B. S. et al. (2010).
+    <em>Seeing birds and biodiversity through science and art.</em>
+    <a href="https://www.susted.com/wordpress/content/seeing-birds-and-biodiversity-through-science-and-art-an-integrated-community-education-program_2023_04/" target="_blank">susted.com</a>
+  </li>
+
+  <li>Wildford, J. N. (2016).
+    <em>Dinosaurs Among Us.</em> The New York Times.
+    <a href="https://www.nytimes.com/2016/03/29/science/dinosaurs-birds-evolution-american-museum-of-natural-history.html" target="_blank">nytimes.com</a>
+  </li>
+
+  <li>Young, G. et al. (2008).
+    <em>Roger Tory Peterson.</em>
+    <a href="https://www.britannica.com/biography/Roger-Tory-Peterson" target="_blank">britannica.com</a>
+  </li>
+
+  <li>Αναπτυξιακή Τρικάλων Α.Α.Ε. Ο.Τ.Α. (2015).
+    <em>Τοπικό Σχέδιο Ανάπτυξης.</em>
+  </li>
+
+  <li>Γεωργόπουλος, Α. (2002).
+    <em>Περιβαλλοντική Ηθική.</em> Gutenberg.
+  </li>
+
+  <li>Γεωργόπουλος, Α. (2014).
+    <em>Περιβαλλοντική Εκπαίδευση – Ζητήματα ταυτότητας.</em> Gutenberg.
+  </li>
+
+  <li>Δήμου, Α. (2008).
+    <em>Ιστορία Νεραϊδοχωρίου.</em>
+    <a href="https://neraidohori.info/home.htm" target="_blank">neraidohori.info</a>
+  </li>
+
+  <li>ΕΡΤ Α.Ε. (2023).
+    <em>Κακοκαιρία Daniel: Τα Τρίκαλα θαμμένα κάτω από τη λάσπη.</em>
+    <a href="https://www.ertnews.gr/" target="_blank">ertnews.gr</a>
+  </li>
+
+  <li>Λεγάκις, Α. et al. (2008).
+    <em>Μελέτη των Μεταναστευτικών στην Ελλάδα.</em>
+  </li>
+
+  <li>Μάναλης, Π. et al. (2005).
+    <em>Ο παράγων χρόνος στα Σχολικά Προγράμματα Περιβαλλοντικής Εκπαίδευσης.</em>
+  </li>
+
+  <li>Μέμος, Σ. (2022).
+    <em>Πασχάλης Δουγαλής – Βίντεο.</em>
+    <a href="https://www.kynigesia.gr/" target="_blank">kynigesia.gr</a>
+  </li>
+
+  <li>Μηνόγλου, Δ. (2000).
+    <em>Η χλωρίδα του Πανεπιστημιακού δάσους Περτουλίου.</em>
+  </li>
+
+  <li>Μητράκου, Α. (2019).
+    <em>Ecology Of Avian Dreams – The Birds of Greece.</em>
+    <a href="https://www.portesmagazine.com/birds-of-greece" target="_blank">portesmagazine.com</a>
+  </li>
+
+  <li>Οικονομοπούλου, Ε. (2007).
+    <em>Έλατη – Περτούλι – Ασπροπόταμος.</em>
+    <a href="https://www.athinorama.gr/" target="_blank">athinorama.gr</a>
+  </li>
+
+  <li>Ρηγόπουλος, Γ. (1979).
+    <em>Ο Θεόδωρος Πουλάκης και ο κύκλος της Αποκαλύψεως.</em>
+  </li>
+
+  <li>Σπανουδάκη, Μ. (2021).
+    <em>Αλέκος Φασιανός.</em>
+    <a href="https://www.hellenicdiaspora.org/" target="_blank">hellenicdiaspora.org</a>
+  </li>
+
+  <li>Σπίνος, Κ. (2024).
+    <em>Ζεύξις από την Ποντοηράκλεια.</em>
+    <a href="https://arxeionpolitismou.gr/" target="_blank">arxeionpolitismou.gr</a>
+  </li>
+
+  <li>Σφουγγάρης, Α. (2005).
+    <em>Τι είναι Βιοποικιλότητα;</em>
+  </li>
+
+</ol>
+  </div>
+</section>
+<!--Footer-->
+<footer>
+        <p> © Πτυχιακή εργασία | Βασιλοπούλου Βαΐα</p>
+        <p>Πανεπιστήμιο Θεσσαλίας | Τμήμα Δασολογίας, Επιστημών Ξύλου & Σχεδιασμού </p>
+        <p>Aκαδημαϊκό έτος 2025-26</p>
+        <a href="https://fwsd.uth.gr/" target="_blank">
+            <img src="images/logo.png" alt="School Logo" width="150">
+        </a>
+</footer>
+</body>
+</html>

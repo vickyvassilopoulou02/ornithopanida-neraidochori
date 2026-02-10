@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Πτυχιακή Εργασία - Βασιλοπούλου Βαΐα</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+<!-- CSS -->
+    <style>
+/* ================= ROOT ================= */
+
+:root {
+    --bg-overlay: rgba(220, 189, 139, 0.858);
+    --primary-green: #41644A;
+    --dark-green: #2c4136;
+    --accent-orange: #E9762B;
+    --soft-shadow: 0 10px 35px rgba(0,0,0,0.15);
+}
+
+/* ================= BASE ================= */
+
+body {
+    font-family: 'Aptos', sans-serif;
+    margin: 0;
+    background-color: #fffbef;
+    color: #3e3e3e;
+    scroll-behavior: smooth;
+}
+
+section {
+    margin: 40px auto;
+    padding: 40px;
+    max-width: 1000px;
+    background: #e2e5cd;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.555);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-green);
+    margin-bottom: 40px;
+}
+
+/* ================= HERO ================= */
+
+#home {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(248, 246, 242);
+    border-radius: 50px 50px 50px 50px;
+    overflow: hidden;
+    text-shadow: 3px 3px 9px rgba(0, 0, 0, 0.7);
+}
+
+/* Background slides */
+.bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeLoop 80s infinite;
+}
+
+.bg-slide.slide1 { background-image: url('images/1.JPG'); animation-delay: 0s; }
+.bg-slide.slide2 { background-image: url('images/2.JPG'); animation-delay: 6s; }
+.bg-slide.slide3 { background-image: url('images/3.JPG'); animation-delay: 12s; }
+.bg-slide.slide4 { background-image: url('images/4.JPG'); animation-delay: 18s; }
+.bg-slide.slide5 { background-image: url('images/5.JPG'); animation-delay: 24s; }
+.bg-slide.slide6 { background-image: url('images/6.JPG'); animation-delay: 30s; }
+.bg-slide.slide7 { background-image: url('images/7.JPG'); animation-delay: 36s; }
+.bg-slide.slide8 { background-image: url('images/8.JPG'); animation-delay: 42s; }
+.bg-slide.slide9 { background-image: url('images/9.JPG'); animation-delay: 48s; }
+.bg-slide.slide10 { background-image: url('images/10.JPG'); animation-delay: 56s; }
+.bg-slide.slide11 { background-image: url('images/11.JPG'); animation-delay: 64s; }
+.bg-slide.slide12 { background-image: url('images/12.JPG'); animation-delay: 72s; }
+.bg-slide.slide13 { background-image: url('images/13.JPG'); animation-delay: 80s; }
+
+/* Smooth fade animation */
+@keyframes fadeLoop {
+    0%   { opacity: 0; }
+    8%   { opacity: 1; }
+    25%  { opacity: 1; }
+    33%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Περιεχόμενο πάνω από το background */
+.home-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn-container { margin-top: 30px; }
+
+.btn {
+    padding: 10px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-guide {
+    background: #556b2f;
+    color: white;
+}
+
+.btn-biblio {
+    background: #d2b48c;
+    color: #ffffff;
+}
+
+/* ================= MAP & FLEX ================= */
+
+.study-flex {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.study-flex p {
+    flex: 1;
+    line-height: 1.7;
+}
+
+.map-frame {
+    flex: 1;
+    width: 100%;
+    height: 400px;
+    border: 2px solid #556b2f;
+    border-radius: 15px;
+}
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th {
+    background: var(--dark-green);
+    color: white;
+    padding: 14px;
+}
+
+td {
+    padding: 12px;
+    background: rgba(255,255,255,0.5);
+}
+
+/* ================= BARS ================= */
+
+.bar-container {
+    background: rgba(0,0,0,0.1);
+    height: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
+}
+
+/* ================= FLIP CARDS ================= */
+
+.flip-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    perspective: 1000px;
+}
+
+.flip-card {
+    background: transparent;
+    height: 260px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+    border-radius: 25px;
+    box-shadow: var(--soft-shadow);
+    box-sizing: border-box
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box
+    transform: rotateY(180deg);
+    line-height: 1.6;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box
+}
+
+.flip-card-back {
+    background: #fdfaf1;
+    transform: rotateY(180deg);
+    line-height: 1.6;
+    box-sizing: border-box
+}
+
+/* ================= VIDEO SECTION ================= */
+
+#video-section {
+    max-width: 1100px;
+}
+
+.video-scroll {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+}
+
+.video-card {
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.35s ease;
+}
+
+.video-card img {
+    width: 230px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.video-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.18);
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.55);
+    color: white;
+    font-size: 26px;
+    padding: 12px 18px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.video-card:hover .play-icon {
+    opacity: 1;
+}
+
+/* ================= BACK TO TOP ================= */
+
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.back-to-top img {
+    width: 80px;
+    transition: 0.3s;
+}
+
+.back-to-top:hover img {
+    transform: translateY(-6px);
+    opacity: 0.85;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #74b992;
+    color: #e7ddd0;
+    padding: 30px;
+    text-align: center;
+    border-radius: 50px 50px 0 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+    .study-flex {
+        flex-direction: column;
+    }
+
+    .map-frame {
+        height: 350px;
+    }
+}
+/* ========================= */
+/* Birdwatching Flipcards   */
+/* ========================= */
+
+#birdwatching-guide .flipcards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 330px));
+    justify-content: center;
+    gap: 30px;
+}
+
+#birdwatching-guide .flip-card {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+}
+
+#birdwatching-guide .flip-card-inner {
+    min-height: 280px;
+}
+
+/* Front styling */
+#birdwatching-guide .flip-card-front {
+    background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+    color: white;
+    padding: 25px;
+}
+
+/* Back styling */
+#birdwatching-guide .flip-card-back {
+    background: #ffffff;
+    padding: 25px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+/* Birdwatching Flipcards: διαφορετικά χρώματα front */
+#birdwatching-guide .flipcards-container .flip-card:nth-child(1) .flip-card-front {
+    background: linear-gradient(135deg, #41644A, #2c4136); /* Σκούρο πράσινο */
+}
+
+#birdwatching-guide .flipcards-container .flip-card:nth-child(2) .flip-card-front {
+    background: linear-gradient(135deg, #E9762B, #C55B1D); /* Πορτοκαλί */
+}
+
+#birdwatching-guide .flipcards-container .flip-card:nth-child(3) .flip-card-front {
+    background: linear-gradient(135deg, #5A7D7C, #3E5F5E); /* Τυρκουάζ */
+}
+
+#birdwatching-guide .flipcards-container .flip-card:nth-child(4) .flip-card-front {
+    background: linear-gradient(135deg, #9C5B8C, #6F3D5D); /* Μωβ */
+}
+
+/* ===== Artist Timeline Section ===== */
+
+#artist-timeline {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+#artist-timeline h2 {
+    color: var(--primary-green);
+    margin-bottom: 30px;
+}
+
+/* Slider */
+.artist-slider {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+}
+
+.artist-slider::-webkit-scrollbar {
+    height: 8px;
+}
+
+.artist-slider::-webkit-scrollbar-thumb {
+    background: rgba(65,100,74,0.3);
+    border-radius: 10px;
+}
+
+/* Κάθε κάρτα */
+.artist-card {
+    flex: 0 0 auto;
+    width: 190px;
+    text-align: center;
+}
+
+/* Flip container */
+.artist-flip {
+    width: 190px;
+    height: 190px;
+    perspective: 1000px;
+}
+
+/* Flip inner */
+.artist-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Flip effect */
+.artist-flip:hover .artist-flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front + Back */
+.artist-front,
+.artist-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.artist-back {
+    transform: rotateY(180deg);
+}
+
+/* Images */
+.artist-front img,
+.artist-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Caption */
+.artist-text {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    line-height: 1.3;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .artist-card {
+        width: 150px;
+    }
+
+    .artist-flip {
+        width: 150px;
+        height: 150px;
+    }
+}
+/* ===== SECTION ===== */
+#scroll-gallery {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+
+/* ===== HORIZONTAL SCROLL ===== */
+#scroll-gallery .scroll-gallery-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px;
+
+    scroll-snap-type: x mandatory;
+}
+
+/* Scrollbar styling */
+#scroll-gallery .scroll-gallery-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+#scroll-gallery .scroll-gallery-wrapper::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+}
+
+
+/* Gallery Item */
+#scroll-gallery .scroll-gallery-item {
+    min-width: 250px;
+    height: 180px;
+    position: relative;
+    flex: 0 0 auto;
+
+    border-radius: 15px;
+    overflow: hidden;
+    scroll-snap-align: center;
+}
+
+/* Images */
+#scroll-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+#scroll-gallery .scroll-gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Hover Text */
+#scroll-gallery .scroll-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#scroll-gallery .scroll-gallery-item:hover .scroll-overlay {
+    opacity: 1;
+}
+
+
+/* ===== LIGHTBOX ===== */
+.scroll-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.scroll-lightbox img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 15px;
+}
+
+/* Open */
+.scroll-lightbox:target {
+    display: flex;
+}
+
+/* Close click */
+.scroll-lightbox .close {
+    position: absolute;
+    inset: 0;
+}
+
+
+/* Arrows */
+.scroll-lightbox .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.scroll-lightbox .prev { left: 20px; }
+.scroll-lightbox .next { right: 20px; }
+
+    </style>
+</head>
+
+<!-- Κουμπί αρχικής-->
+<a href="#top" class="back-to-top" aria-label="Επιστροφή στην αρχή">
+   <img src="images/top-button.png" alt="Επιστροφή στην αρχή">
+</a>
+<body>
+<div id="top"></div>
+
+<!-- Εισαγωγή -->
+<section id="home">
+    <div class="bg-slide slide1"></div>
+    <div class="bg-slide slide2"></div>
+    <div class="bg-slide slide3"></div>
+    <div class="bg-slide slide4"></div>
+    <div class="bg-slide slide5"></div>
+    <div class="bg-slide slide6"></div>
+    <div class="bg-slide slide7"></div>
+    <div class="bg-slide slide8"></div>
+    <div class="bg-slide slide9"></div>
+    <div class="bg-slide slide10"></div>
+    <div class="bg-slide slide11"></div>
+    <div class="bg-slide slide12"></div>
+    <div class="bg-slide slide13"></div>
+    
+    <div class="home-content">
+        <h1>Η ορνιθοπανίδα του δάσους Νεραϊδοχωρίου της ΠΕ Τρικάλων</h1>
+        <h3>ως πηγή έμπνευσης για την δημιουργία πρότυπου εκπαιδευτικού υλικού για την ευαισθητοποίηση των μαθητών</h3>
+        <div class="btn-container">
+            <a href="#section5" class="btn btn-guide">Οδηγός Αναγνώρισης</a>
+            <a href="bibliographia.html" target="_blank" class="btn btn-biblio">Βιβλιογραφία</a>
+        </div>
+    </div>
+</section>
+
+<!-- Σκοπός & Περιοχή Μελέτης -->
+<section id="section2">
+    <h2>Σκοπός & Περιοχή Μελέτης 🗺️ </h2>
+    <div class="study-flex">
+        <p>
+        Η πτυχιακή εργασία επικεντρώνεται στη συστηματική καταγραφή και μελέτη των αποδημητικών και επιδημητικών ειδών ορνιθοπανίδας στην ορεινή περιοχή του
+        Νεραϊδοχωρίου Τρικάλων, μιας περιοχής ενταγμένης στο Δίκτυο Προστατευόμενων Περιοχών «NATURA» 2000. Η έρευνα κρίθηκε αναγκαία για την κατανόηση της σημασίας της ορνιθοπανίδας και την ανάγκη για προστασία της βιοποικιλότητας. 
+        Η περιοχή μελέτης βρίσκεται στις πλαγιές του Κόζιακα και διασχίζεται από τον Ασπροπόταμο (Αχελωός), 
+        ο οποίος στηρίζει την οικολογική ισορροπία της ευρύτερης περιοχής.</p>
+        <iframe class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6154.727466635968!2d21.43241359305873!3d39.52884786160585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135940f996432fd9%3A0x11cd370eba5d537b!2zzp3Otc-BzrHPis60zr_Ph8-Oz4HOuSA0MjAgMzI!5e0!3m2!1sel!2sgr!4v1770629044454!5m2!1sel!2sgr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+<!-- Βασικές έννοιες -->
+<section id="definitions">
+  <h2>Βασικές & χρήσιμες έννοιες 📑 </h2>
+  <div class="flip-section">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          Τι είναι<br>Βιοποικιλότητα; 🪶
+        </div>
+       <div class="flip-card-back">
+    <p>Αφορά την ποικιλία όλων των μορφών ζωής στον πλανήτη.
+    Περιλαμβάνει τα διαφορετικά είδη οργανισμών, τα οικοσυστήματα
+    στα οποία αυτοί ζουν, καθώς και τη γενετική ποικιλότητα
+    μέσα σε κάθε είδος.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          Τι είναι<br>Ορνιθοπανίδα; 🦅
+        </div>
+        <div class="flip-card-back">
+       <p> Περιλαμβάνει το σύνολο των ειδών πτηνών
+          που απαντώνται σε μια συγκεκριμένη περιοχή.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          Τι είναι<br>Σταθμός Σημειακής Καταγραφής; 🗒️
+        </div>
+        <div class="flip-card-back">
+         Eίναι μέθοδος καταγραφής
+          της ορνιθοπανίδας, κατά την οποία ο παρατηρητής καταγράφει όλα τα είδη
+          που βλέπει ή ακούει από ένα σταθερό σημείο σε συγκεκριμένο χρονικό διάστημα.
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          Τι είναι το<br>Δίκτυο Natura 2000; 🌍
+        </div>
+        <div class="flip-card-back">
+          Eίναι ένα πανευρωπαϊκό δίκτυο
+          προστατευόμενων περιοχών, με στόχο τη διατήρηση της βιοποικιλότητας
+          και των φυσικών οικοτόπων. Σε αυτό το δίκτυο είναι ενταγμένη η περιοχή του Ασπροποτάμου, όπου περιλαμβάνεται και το Νεραϊδοχώρι.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Μεθοδολογία & Αποτελέσματα -->
+<section id="section3">
+        <h2>Μεθοδολογία & Αποτελέσματα 📈 </h2>
+        <p>Η συλλογή δεδομένων διεξήχθη την περίοδο 2021–2025, εφαρμόζοντας τη μέθοδο
+των Σταθμών Σημειακής Καταγραφής (PCS) και ένα πρωτόκολλο καταγραφής. Τα
+αποτελέσματα έδειξαν ότι τα περισσότερα είδη ανήκουν στην τάξη των
+Στρουθιόμορφων (Passeriformes), αντιπροσωπεύοντας το 85,37% των καταγραφών.
+        <table>
+            <tr><th>Τάξη</th><th>Ποσοστό (%)</th></tr>
+            <tr><td>Στρουθιόμορφα (Passeriformes)</td><td><b>85,37%</b></td></tr>
+            <tr><td>Δρυοκολαπτόμορφα (Piciformes)</td><td>4,88%</td></tr>
+            <tr><td>Λοιπές τάξεις (Αετόμορφα, Περιστερόμορφα, Κοκκυγόμορφα, Κορακιόμορφα)</td><td>2,44% έκαστη</td></tr>
+        </table>
+        <div class="bar-container"><div class="bar-fill" style="width: 85.37%;"></div></div>
+        <p><small>* Τα μεταναστευτικά είδη αποτελούν το <b>41,5%</b> του πληθυσμού.</small></p>
+</section>
+
+<!-- Τέχνη & Παρατήρηση -->
+<section id="artist-timeline">
+    <h2>Η τέχνη της παρατήρησης 🖌️ </h2>
+    <p>Οι παρατηρητές πτηνών ξεκίνησαν να σχεδιάζουν τα πτηνά που παρατηρούσαν, καθώς το σκίτσο ενίσχυε τις παρατηρητικές τους ικανότητες, όπως περίπλοκες
+       λεπτομέρειες της ανατομίας και του φτερώματος των πτηνών που διαφορετικά θα μπορούσαν να τους διαφύγουν, καθώς επίσης εμβάθυνε τη σύνδεσή τους με τα πτηνά
+       και τη φύση.</p>
+
+    <div class="artist-slider">
+
+        <!-- Artist 1 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/edwards.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/edwards_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Τζορτζ Έντουαρντς (1694–1773)</strong><br>
+                Βρετανός ορνιθολόγος γνωστός για πολύχρωμα και λεπτομερή σχέδια πτηνών στο έργο του "A Natural History of Uncommon Birds".
+            </p>
+        </div>
+
+        <!-- Artist 2 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/bewick.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/bewick_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Τόμας Μπιγουίκ (1753–1828)</strong><br>
+                Καλλιτέχνης και χαράκτης που έγινε γνωστός για λεπτομερείς ξυλογραφίες πτηνών.
+            </p>
+        </div>
+
+        <!-- Artist 3 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/audubon.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/audubon_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Τζον Τζέιμς Οντιμπόν (1785–1851)</strong><br>
+                Αμερικανός καλλιτέχνης και φυσιοδίφης, δημιουργός του έργου "The Birds of America" με 435 εικονογραφήσεις πτηνών. 
+                Το έργο του επηρέασε σημαντικά τη μελέτη και προστασία των πουλιών.
+            </p>
+        </div>
+
+            <!-- Artist 4 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/thorburn.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/thorburn_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Άρτσιμπαλντ Θόρμπερν (1860–1935)</strong><br>
+                Σκωτσέζος ζωγράφος που ξεχώρισε για ακουαρέλες πτηνών, παρουσιάζοντάς τα με ρεαλισμό μέσα στο φυσικό τους περιβάλλον.
+            </p>
+        </div>
+
+        <!-- Artist 5 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/fuertes.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/fuertes_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Λούις Αγκασίζ Φουέρτες (1874–1927)</strong><br>
+                Ορνιθολόγος και καλλιτέχνης γνωστός για ρεαλιστικές και λεπτομερείς απεικονίσεις πτηνών σε επιστημονικά βιβλία και περιοδικά.
+            </p>
+        </div>
+
+        <!-- Artist 6 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/Peterson.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/peterson_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Ρότζερ Τόρι Πίτερσον (1908–1996)</strong><br>
+                Φυσιοδίφης και εκπαιδευτικός, χρησιμοποιώντας εικονογραφήσεις μέσα στους οδηγούς πεδίου για ευκολότερη αναγνώριση πτηνών.
+            </p>
+        </div>
+
+        <!-- Artist 7 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/poulakis.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/poulakis_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Θεόδωρος Πουλάκης (1622–1692)</strong><br>
+                Μπαρόκ ζωγράφος που απεικόνισε πολλά πτηνά στο έργο "Η Κιβωτός του Νώε".
+            </p>
+        </div>
+
+            <!-- Artist 8 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/fasianos.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/fasianos_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Αλέκος Φασιανός (1935–2022)</strong><br>
+                Σύγχρονος Έλληνας ζωγράφος που χρησιμοποίησε συχνά τα πτηνά ως συμβολικό στοιχείο στα έργα του.
+            </p>
+        </div>
+
+            <!-- Artist 9 -->
+        <div class="artist-card">
+            <div class="artist-flip">
+                <div class="artist-flip-inner">
+                    <div class="artist-front">
+                        <img src="images/dougalis.jpg" alt="">
+                    </div>
+                    <div class="artist-back">
+                        <img src="images/dougalis_1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <p class="artist-text">
+                <strong>Πασχάλης Δουγαλής</strong><br>
+                Σύγχρονος αυτοδίδακτος καλλιτέχνης άγριας ζωής, γνωστός για επιστημονικά ακριβείς εικονογραφήσεις ευρωπαϊκών πτηνών.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Περιβαλλοντική Εκπαίδευση -->
+<section id="section5">
+        <h2>Περιβαλλοντική Εκπαίδευση 🌲 </h2>
+        <h3>«Φτερουγίσματα στο Νεραϊδοχώρι» Ένας οδηγός για μικρούς πατηρητές</h3>
+        <p>Η παρατήρηση πτηνών είναι μια εξαιρετική εκπαιδευτική δραστηριότητα για τα παιδιά, προσφέρει άμεση επαφή με τη φύση, εκμάθηση και ευαισθητοποίηση για την
+            άγρια ζωή και τα οικοσυστήματα, καθώς και η ανάπτυξη δεξιοτήτων παρατήρησης και κριτικής σκέψης. Ενθαρρύνει την περιέργεια και τον σεβασμό για το περιβάλλον,
+            ενώ παράλληλα προσφέρει ευκαιρίες για πρακτική μάθηση στην ύπαιθρο. Τα πτηνά είναι μέρος της ζωής κάθε παιδιού από μικρή ηλικία, από τα έθιμα και τις παραδόσεις του κάθε τόπου μέχρι και τις παιδικές ζωγραφιές και χειροτεχνίες. </p>
+        
+        <p>Ένας από τους κύριους στόχους της υπάρχουσας εργασίας είναι η δημιουργία
+           πρότυπου εκπαιδευτικού υλικού για μαθητές. Τα αποτελέσματα που προέκυψαν από την έρευνα στο πεδίο αποτελούν την
+           βάση δημιουργίας του υλικού.</p>
+
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/7dff1be1e7.html" style="border: 1px solid lightgray; width: 100%; height: 400px;"></iframe></div>
+                <a href="files/activities.pdf" target="_blank">
+                <button class="btn btn-guide"> Λήψη Δραστηριοτήτων οδηγού (PDF)</button></a>
+             <a href="files/poster.pdf" target="_blank">
+                <button class="btn btn-biblio">Λήψη αφίσας (PDF)</button>
+            </a>
+</section>
+
+<!-- Birdwatching -->
+<section id="birdwatching-guide">
+    <h2>Πώς να γίνεις παρατηρητής πτηνών 🔭 </h2>
+    <div class="guide-flex">
+        <div class="flipcards-container">
+            <!-- Flipcard 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3> Εξοπλισμός & προετοιμασία</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul>
+                            <li><strong>Εργαλεία παρατήρησης:</strong> Κιάλια ή τηλεσκόπιο για να βλέπεις τα πτηνά χωρίς να τα ενοχλείς.</li>
+                            <li><strong>Τα απαραίτητα:</strong> Τροφή, νερό, αδιάβροχα/αντιολισθητικά παπούτσια, καπέλο.</li>
+                            <li><strong>Σημειωματάριο:</strong> Οδηγός πεδίου ή app για αναγνώριση πουλιών.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flipcard 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3> Πού & πότε να ψάξεις</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul>
+                            <li><strong>Ώρα:</strong> Νωρίς το πρωί, τα πουλιά είναι πιο ενεργά.</li>
+                            <li><strong>Τοποθεσίες:</strong> Υγρότοποι, λίμνες, ποτάμια, εκβολές ποταμών, λιδαδικές εκτάσεις.</li>
+                            <li><strong>Ξεκίνα με κοινά εδη:</strong> Για αυτοπεποίθηση και εξάσκηση.</li>
+                            <li><strong>Υπομονή:</strong> Απαραίτητη για καλές παρατηρήσεις.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flipcard 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3> Υπεύθυνη Παρατήρηση</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul>
+                            <li><strong>Μην ενοχλείς:</strong> Ελάχιστη διατάραξη πτηνών </li>
+                            <li><strong>Σεβασμός κανόνων:</strong> Τήρηση κανονισμών σε ΖΕΠ/ΕΖΔ .</li>
+                            <li><strong>Πρόσεχε την άγρια ζωή:</strong> Ειδικά κατά την αναπαραγωγή.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flipcard 4 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h3> Βρες φίλους παρατηρητές</h3>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul>
+                            <li><strong>Ζήτα υποστήριξη:</strong> Τοπικές κοινότητες,οργανισμούς, ομάδες.</li>
+                            <li><strong>Ομαδική δράση:</strong> Συμμετοχή σε οργανωμένες εξορμήσεις.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Χρήσιμα Βίντεο -->
+<section id="video-section">
+
+    <h2>Χρήσιμα Βίντεο ▶️</h2>
+
+    <div class="video-scroll">
+
+        <!-- Video Card -->
+        <a href="https://www.youtube.com/watch?v=9RgJNH-2U9w" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/9RgJNH-2U9w/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=4jV7TVUJdHw" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/4jV7TVUJdHw/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=f9Bo_IXTEfE" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/f9Bo_IXTEfE/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=Y4du2NEo4zU" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/Y4du2NEo4zU/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+        
+        <a href="https://www.youtube.com/watch?v=1RK4Nx4i924" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/1RK4Nx4i924/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=uq6fIA3m7jw" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/uq6fIA3m7jw/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=DSIhFy6tlvI" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/DSIhFy6tlvI/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=egnQF6bhPEw" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/egnQF6bhPEw/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=YVc6I99ARDc" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/YVc6I99ARDc/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=ZbZxfMJY1dI" target="_blank" class="video-card">
+            <img src="https://img.youtube.com/vi/ZbZxfMJY1dI/hqdefault.jpg">
+            <span class="play-icon">▶</span>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- Gallery  -->
+<section id="scroll-gallery">
+    <h2>Gallery 📸 </h2>
+    <p>Μερικές φωτογραφίες με πτηνά, που μπορεί να παρατηρήσεις στο Νεραϊδοχώρι</p>
+    <div class="scroll-gallery-wrapper">
+
+        <!-- IMAGE 1 -->
+        <a href="#scroll-img1" class="scroll-gallery-item">
+            <img src="images/bird1.jpg">
+            <span class="scroll-overlay">Αιγίθαλος (Aegithalos caudatus) </span>
+        </a>
+
+        <!-- IMAGE 2 -->
+        <a href="#scroll-img2" class="scroll-gallery-item">
+            <img src="images/bird2.jpg">
+            <span class="scroll-overlay">Αετομάχος (Lanius collurio) ♀ </span>
+        </a>
+
+        <!-- IMAGE 3 -->
+        <a href="#scroll-img3" class="scroll-gallery-item">
+            <img src="images/bird3.jpg">
+            <span class="scroll-overlay">Αετομάχος (Lanius collurio) ♂ </span>
+        </a>
+
+        <!-- IMAGE 4 -->
+        <a href="#scroll-img4" class="scroll-gallery-item">
+            <img src="images/bird4.jpg">
+            <span class="scroll-overlay">Κότσυφας (Turdus merula) ♂ </span>
+        </a>
+
+        <!-- IMAGE 5 -->
+        <a href="#scroll-img5" class="scroll-gallery-item">
+            <img src="images/bird5.jpg">
+            <span class="scroll-overlay">Τσαλαπετεινός (Upupa epops) </span>
+        </a>
+
+        <!-- IMAGE 6 -->
+        <a href="#scroll-img6" class="scroll-gallery-item">
+            <img src="images/bird6.JPG">
+            <span class="scroll-overlay">Γαλαζοπαπαδίτσα (Cyanistes caeruleus)</span>
+        </a>
+
+        <!-- IMAGE 7 -->
+        <a href="#scroll-img7" class="scroll-gallery-item">
+            <img src="images/bird7.JPG">
+            <span class="scroll-overlay">Μαυροσκούφης (Sylvia atricapilla) ♀ </span>
+        </a>
+
+        <!-- IMAGE 8 -->
+        <a href="#scroll-img8" class="scroll-gallery-item">
+            <img src="images/bird8.JPG">
+            <span class="scroll-overlay">Ελατοπαπαδίτσα (Periparus ater)</span>
+        </a>
+
+        <!-- IMAGE 9 -->
+        <a href="#scroll-img9" class="scroll-gallery-item">
+            <img src="images/bird9.JPG">
+            <span class="scroll-overlay">Μαυρολαίμης (Saxicola rubicola)</span>
+        </a>
+
+        <!-- IMAGE 10 -->
+        <a href="#scroll-img10" class="scroll-gallery-item">
+            <img src="images/bird10.JPG">
+            <span class="scroll-overlay">Κοκκινοκεφαλάς (Lanius senator)</span>
+        </a>
+
+        <!-- IMAGE 11 -->
+        <a href="#scroll-img11" class="scroll-gallery-item">
+            <img src="images/bird11.JPG">
+            <span class="scroll-overlay">Σταχτοπετρόκλης (Oenanthe oenanthe)</span>
+        </a>
+
+        <!-- IMAGE 12 -->
+        <a href="#scroll-img12" class="scroll-gallery-item">
+            <img src="images/bird12.JPG">
+            <span class="scroll-overlay">Τρυγόνι (Streptopelia turtur)</span>
+        </a>
+
+        <!-- IMAGE 13 -->
+        <a href="#scroll-img13" class="scroll-gallery-item">
+            <img src="images/bird13.JPG">
+            <span class="scroll-overlay">Βουνοτσίχλονο (Emberiza cia)</span>
+        </a>
+
+        <!-- IMAGE 14 -->
+        <a href="#scroll-img14" class="scroll-gallery-item">
+            <img src="images/bird14.JPG">
+            <span class="scroll-overlay">Πετροκότσυφας (Monticola saxatilis)</span>
+        </a>
+
+        <!-- IMAGE 15 -->
+<a href="#scroll-img15" class="scroll-gallery-item">
+    <img src="images/bird15.JPG">
+    <span class="scroll-overlay">Καστανολαίμης (Saxicola rubetra) ♀ </span>
+</a>
+
+<!-- IMAGE 16 -->
+<a href="#scroll-img16" class="scroll-gallery-item">
+    <img src="images/bird16.JPG">
+    <span class="scroll-overlay">Φλώρος (Chloris chloris)</span>
+</a>
+
+<!-- IMAGE 17 -->
+<a href="#scroll-img17" class="scroll-gallery-item">
+    <img src="images/bird17.JPG">
+    <span class="scroll-overlay">Κοκκινολαίμης (Erithacus rubecula)</span>
+</a>
+
+<!-- IMAGE 18 -->
+<a href="#scroll-img18" class="scroll-gallery-item">
+    <img src="images/bird18.JPG">
+    <span class="scroll-overlay">Κοκοθραύστης (Coccothraustes coccothraustes)</span>
+</a>
+
+<!-- IMAGE 19 -->
+<a href="#scroll-img19" class="scroll-gallery-item">
+    <img src="images/bird19.JPG">
+    <span class="scroll-overlay">Καλόγερος (Parus major) ♂ </span>
+</a>
+
+<!-- IMAGE 20 -->
+<a href="#scroll-img20" class="scroll-gallery-item">
+    <img src="images/bird20.JPG">
+    <span class="scroll-overlay">Σιρλοτσίχλονο (Emberiza cirlus)</span>
+</a>
+
+<!-- IMAGE 21 -->
+<a href="#scroll-img21" class="scroll-gallery-item">
+    <img src="images/bird21.JPG">
+    <span class="scroll-overlay">Τσαρτσάρα (Turdus viscivorus)</span>
+</a>
+
+<!-- IMAGE 22 -->
+<a href="#scroll-img22" class="scroll-gallery-item">
+    <img src="images/bird22.JPG">
+    <span class="scroll-overlay">Βλαχοτσίχλονο (Emberiza hortulana)</span>
+</a>
+
+<!-- IMAGE 23 -->
+<a href="#scroll-img23" class="scroll-gallery-item">
+    <img src="images/bird23.JPG">
+    <span class="scroll-overlay">Καρδερίνα (Carduelis carduelis)</span>
+</a>
+
+<!-- IMAGE 24 -->
+<a href="#scroll-img24" class="scroll-gallery-item">
+    <img src="images/bird24.JPG">
+    <span class="scroll-overlay">Γερακίνα (Buteo buteo)</span>
+</a>
+
+<!-- IMAGE 25 -->
+<a href="#scroll-img25" class="scroll-gallery-item">
+    <img src="images/bird25.JPG">
+    <span class="scroll-overlay">Σταχτομυγοχάφτης (Muscicapa striata) (</span>
+</a>
+
+<!-- IMAGE 26 -->
+<a href="#scroll-img26" class="scroll-gallery-item">
+    <img src="images/bird26.JPG">
+    <span class="scroll-overlay">Κίσσα (Garrulus glandarius)</span>
+</a>
+
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="scroll-img1" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img4" class="arrow prev">&#10094;</a>
+    <img src="images/bird1.jpg">
+    <a href="#scroll-img2" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img2" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img1" class="arrow prev">&#10094;</a>
+    <img src="images/bird2.jpg">
+    <a href="#scroll-img3" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img3" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img2" class="arrow prev">&#10094;</a>
+    <img src="images/bird3.jpg">
+    <a href="#scroll-img4" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img4" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img3" class="arrow prev">&#10094;</a>
+    <img src="images/bird4.jpg">
+    <a href="#scroll-img5" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img5" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img4" class="arrow prev">&#10094;</a>
+    <img src="images/bird5.jpg">
+    <a href="#scroll-img6" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img6" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img5" class="arrow prev">&#10094;</a>
+    <img src="images/bird6.JPG">
+    <a href="#scroll-img7" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img7" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img6" class="arrow prev">&#10094;</a>
+    <img src="images/bird7.JPG">
+    <a href="#scroll-img8" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img8" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img7" class="arrow prev">&#10094;</a>
+    <img src="images/bird8.JPG">
+    <a href="#scroll-img9" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img9" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img8" class="arrow prev">&#10094;</a>
+    <img src="images/bird9.JPG">
+    <a href="#scroll-img10" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img10" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img9" class="arrow prev">&#10094;</a>
+    <img src="images/bird10.JPG">
+    <a href="#scroll-img11" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img11" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img10" class="arrow prev">&#10094;</a>
+    <img src="images/bird11.JPG">
+    <a href="#scroll-img12" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img12" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img11" class="arrow prev">&#10094;</a>
+    <img src="images/bird12.JPG">
+    <a href="#scroll-img13" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img13" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img12" class="arrow prev">&#10094;</a>
+    <img src="images/bird13.JPG">
+    <a href="#scroll-img14" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img14" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img13" class="arrow prev">&#10094;</a>
+    <img src="images/bird14.JPG">
+    <a href="#scroll-img15" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img15" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img14" class="arrow prev">&#10094;</a>
+    <img src="images/bird15.JPG">
+    <a href="#scroll-img16" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img16" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img15" class="arrow prev">&#10094;</a>
+    <img src="images/bird16.JPG">
+    <a href="#scroll-img17" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img17" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img16" class="arrow prev">&#10094;</a>
+    <img src="images/bird17.JPG">
+    <a href="#scroll-img18" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img18" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img17" class="arrow prev">&#10094;</a>
+    <img src="images/bird18.JPG">
+    <a href="#scroll-img19" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img19" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img18" class="arrow prev">&#10094;</a>
+    <img src="images/bird19.JPG">
+    <a href="#scroll-img20" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img20" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img19" class="arrow prev">&#10094;</a>
+    <img src="images/bird20.JPG">
+    <a href="#scroll-img21" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img21" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img20" class="arrow prev">&#10094;</a>
+    <img src="images/bird21.JPG">
+    <a href="#scroll-img22" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img22" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img21" class="arrow prev">&#10094;</a>
+    <img src="images/bird22.JPG">
+    <a href="#scroll-img23" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img23" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img22" class="arrow prev">&#10094;</a>
+    <img src="images/bird23.JPG">
+    <a href="#scroll-img24" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img24" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img23" class="arrow prev">&#10094;</a>
+    <img src="images/bird24.JPG">
+    <a href="#scroll-img25" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img25" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img24" class="arrow prev">&#10094;</a>
+    <img src="images/bird25.JPG">
+    <a href="#scroll-img26" class="arrow next">&#10095;</a>
+</div>
+
+<div id="scroll-img26" class="scroll-lightbox">
+    <a href="#" class="close"></a>
+    <a href="#scroll-img25" class="arrow prev">&#10094;</a>
+    <img src="images/bird26.JPG">
+    <a href="#scroll-img1" class="arrow next">&#10095;</a>
+</div>
+
+<!--Footer-->
+<footer>
+        <p> © Πτυχιακή εργασία | Βασιλοπούλου Βαΐα</p>
+        <p>Πανεπιστήμιο Θεσσαλίας | Τμήμα Δασολογίας, Επιστημών Ξύλου & Σχεδιασμού </p>
+        <p>Aκαδημαϊκό έτος 2025-26</p>
+        <a href="https://fwsd.uth.gr/" target="_blank">
+            <img src="images/logo.png" alt="School Logo" width="150">
+        </a>
+</footer>
+
+    <script>
+        // Intersection Observer για Smooth Fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
